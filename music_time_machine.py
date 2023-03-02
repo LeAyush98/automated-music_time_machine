@@ -36,4 +36,8 @@ for index, song in enumerate(track):
     result = spot.search(q=track[index], type="track")["tracks"]["items"][0]["uri"]
     uri.append(result)
 
-print(uri)
+playlist = spot.user_playlist_create(user=id, name= f"{date} BillBoard 100", public=False)
+
+playlist_id = playlist["id"]
+
+spot.user_playlist_add_tracks(user=id,playlist_id=playlist_id,tracks=uri)
